@@ -25,48 +25,50 @@ const INJURY_LABELS = {
 };
 
 const BODY_ZONES = [
-  ["head", "Head", 50, 10],
-  ["neck", "Neck", 50, 21],
-  ["chest", "Chest", 50, 30],
-  ["abdomen", "Abdomen", 50, 43],
-  ["hip_left", "Left Hip", 43, 52],
-  ["hip_right", "Right Hip", 57, 52],
-  ["left_shoulder", "Left Shoulder", 34, 27],
-  ["left_upper_arm", "Left Upper Arm", 27, 35],
-  ["left_elbow", "Left Elbow", 25, 43],
-  ["left_forearm", "Left Forearm", 24, 51],
-  ["left_wrist", "Left Wrist", 24, 60],
-  ["left_hand", "Left Hand", 24, 64],
-  ["left_thumb", "Left Thumb", 18, 64],
-  ["left_ring", "Left Ring Finger", 24, 68],
-  ["left_middle", "Left Middle Finger", 21, 68],
-  ["right_shoulder", "Right Shoulder", 66, 27],
-  ["right_upper_arm", "Right Upper Arm", 73, 35],
-  ["right_elbow", "Right Elbow", 75, 43],
-  ["right_forearm", "Right Forearm", 76, 51],
-  ["right_wrist", "Right Wrist", 76, 60],
-  ["right_hand", "Right Hand", 76, 64],
-  ["right_thumb", "Right Thumb", 82, 64],
-  ["right_ring", "Right Ring Finger", 76, 68],
-  ["right_middle", "Right Middle Finger", 79, 68],
-  ["right_pinky", "Right Pinky Finger", 83, 68],
-  ["left_thigh", "Left Thigh", 43, 63],
-  ["left_knee", "Left Knee", 43, 73],
-  ["left_shin", "Left Shin", 43, 81],
-  ["left_calf", "Left Calf", 39, 81],
-  ["left_ankle", "Left Ankle", 43, 91],
-  ["left_foot", "Left Foot", 42, 96],
-  ["right_thigh", "Right Thigh", 57, 63],
-  ["right_knee", "Right Knee", 57, 73],
-  ["right_shin", "Right Shin", 57, 81],
-  ["right_calf", "Right Calf", 61, 81],
-  ["right_ankle", "Right Ankle", 57, 91],
-  ["right_foot", "Right Foot", 58, 96]
-].map(([key, label, x, y]) => ({ key, label, x, y }));
+  ["head", "Head", 43, 28, 5.4],
+  ["neck", "Neck", 45, 40, 4.4],
+  ["chest", "Chest", 50, 52, 5.2],
+  ["abdomen", "Abdomen", 51, 65, 5.2],
+  ["hip_left", "Left Hip", 45, 75, 4.8],
+  ["hip_right", "Right Hip", 59, 72, 4.8],
+  ["left_shoulder", "Left Shoulder", 36, 47, 4.5],
+  ["left_upper_arm", "Left Upper Arm", 29, 51, 4.4],
+  ["left_elbow", "Left Elbow", 22, 55, 4.3],
+  ["left_forearm", "Left Forearm", 17, 51, 4.3],
+  ["left_wrist", "Left Wrist", 12, 47, 4],
+  ["left_hand", "Left Hand", 9, 43, 4.4],
+  ["left_thumb", "Left Thumb", 14, 40, 3.4],
+  ["left_ring", "Left Ring Finger", 7, 44, 3.2],
+  ["left_middle", "Left Middle Finger", 8, 41, 3.2],
+  ["right_shoulder", "Right Shoulder", 61, 42, 4.5],
+  ["right_upper_arm", "Right Upper Arm", 68, 31, 4.4],
+  ["right_elbow", "Right Elbow", 72, 24, 4.3],
+  ["right_forearm", "Right Forearm", 73, 15, 4.3],
+  ["right_wrist", "Right Wrist", 74, 9, 4],
+  ["right_hand", "Right Hand", 76, 5, 4.4],
+  ["right_thumb", "Right Thumb", 81, 6, 3.4],
+  ["right_ring", "Right Ring Finger", 76, 3, 3.2],
+  ["right_middle", "Right Middle Finger", 73, 2, 3.2],
+  ["right_pinky", "Right Pinky Finger", 79, 2, 3.2],
+  ["left_thigh", "Left Thigh", 43, 84, 4.7],
+  ["left_knee", "Left Knee", 37, 98, 4.4],
+  ["left_shin", "Left Shin", 31, 111, 4.4],
+  ["left_calf", "Left Calf", 35, 111, 4.4],
+  ["left_ankle", "Left Ankle", 24, 122, 4],
+  ["left_foot", "Left Foot", 17, 125, 4.5],
+  ["right_thigh", "Right Thigh", 69, 77, 4.7],
+  ["right_knee", "Right Knee", 84, 80, 4.4],
+  ["right_shin", "Right Shin", 89, 95, 4.4],
+  ["right_calf", "Right Calf", 94, 96, 4.4],
+  ["right_ankle", "Right Ankle", 90, 111, 4],
+  ["right_foot", "Right Foot", 96, 117, 4.5]
+].map(([key, label, x, y, radius]) => ({ key, label, x, y, radius }));
 
 const BODY_ZONE_BY_KEY = Object.fromEntries(
   BODY_ZONES.map((zone) => [zone.key, zone])
 );
+
+let bodyMapRenderId = 0;
 
 const state = {
   route: parseRoute(),
@@ -723,6 +725,7 @@ function renderBodyMap({
   interactive = false,
   compact = false
 } = {}) {
+  const mapId = `body-map-${bodyMapRenderId++}`;
   const selectedMarkers = selectedKeys
     .map((key) => BODY_ZONE_BY_KEY[key])
     .filter(Boolean)
@@ -731,45 +734,75 @@ function renderBodyMap({
       xPosition: zone.x,
       yPosition: zone.y
     }));
-  const allMarkers = [...markers, ...selectedMarkers];
+  const allMarkers = [...markers, ...selectedMarkers].map((marker) => {
+    const zone = BODY_ZONE_BY_KEY[marker.bodyZoneKey];
+    return {
+      ...marker,
+      xPosition: zone?.x ?? marker.xPosition,
+      yPosition: zone?.y ?? marker.yPosition
+    };
+  });
 
   return `
     <svg
       class="body-map ${compact ? "compact" : ""} ${interactive ? "interactive" : ""}"
-      viewBox="0 0 100 110"
+      viewBox="0 0 100 130"
       role="img"
       aria-label="Body injury map"
     >
-      <g class="body-base">
-        <rect x="42" y="5" width="16" height="15" rx="4"></rect>
-        <circle cx="46" cy="12" r="1.5"></circle>
-        <circle cx="54" cy="12" r="1.5"></circle>
-        <path d="M46 17 Q50 19 54 17"></path>
-        <rect x="38" y="23" width="24" height="30" rx="4"></rect>
-        <circle cx="50" cy="31" r="2.5"></circle>
-        <rect x="30" y="24" width="7" height="18" rx="4"></rect>
-        <rect x="27" y="43" width="8" height="16" rx="4"></rect>
-        <rect x="23" y="58" width="10" height="8" rx="3"></rect>
-        <rect x="63" y="24" width="7" height="18" rx="4"></rect>
-        <rect x="65" y="43" width="8" height="16" rx="4"></rect>
-        <rect x="67" y="58" width="10" height="8" rx="3"></rect>
-        <rect x="40" y="54" width="9" height="22" rx="4"></rect>
-        <rect x="51" y="54" width="9" height="22" rx="4"></rect>
-        <rect x="39" y="77" width="10" height="18" rx="4"></rect>
-        <rect x="51" y="77" width="10" height="18" rx="4"></rect>
-        <rect x="38" y="96" width="12" height="6" rx="3"></rect>
-        <rect x="50" y="96" width="12" height="6" rx="3"></rect>
+      <defs>
+        <radialGradient id="${mapId}-skin" cx="32%" cy="22%" r="76%">
+          <stop offset="0%" stop-color="#ffffff"></stop>
+          <stop offset="42%" stop-color="#d9d8d4"></stop>
+          <stop offset="100%" stop-color="#8f8d88"></stop>
+        </radialGradient>
+        <linearGradient id="${mapId}-limb" x1="18%" y1="8%" x2="88%" y2="100%">
+          <stop offset="0%" stop-color="#f8f8f5"></stop>
+          <stop offset="50%" stop-color="#d1d0cb"></stop>
+          <stop offset="100%" stop-color="#85837e"></stop>
+        </linearGradient>
+        <linearGradient id="${mapId}-hold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e4dbd1"></stop>
+          <stop offset="100%" stop-color="#b7a99a"></stop>
+        </linearGradient>
+        <filter id="${mapId}-soft-shadow" x="-20%" y="-20%" width="140%" height="150%">
+          <feDropShadow dx="1.4" dy="2.8" stdDeviation="2.4" flood-color="#34281d" flood-opacity="0.23"></feDropShadow>
+        </filter>
+      </defs>
+      <ellipse class="wall-shadow" cx="50" cy="126" rx="35" ry="3.2"></ellipse>
+      <g class="wall-holds">
+        <ellipse cx="76" cy="4" rx="5" ry="2.3" fill="url(#${mapId}-hold)" transform="rotate(-8 76 4)"></ellipse>
+        <ellipse cx="8" cy="43" rx="5.6" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(-31 8 43)"></ellipse>
+        <ellipse cx="97" cy="117" rx="5.5" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(22 97 117)"></ellipse>
+        <ellipse cx="16" cy="126" rx="5.3" ry="2.4" fill="url(#${mapId}-hold)" transform="rotate(-6 16 126)"></ellipse>
+      </g>
+      <g class="body-base" filter="url(#${mapId}-soft-shadow)">
+        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
+        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
+        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
+        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
+        <path class="climber-torso" fill="url(#${mapId}-skin)" d="M39 42 C47 36 61 38 65 49 C71 62 67 80 54 85 C41 90 31 77 32 61 C33 51 35 45 39 42 Z"></path>
+        <ellipse class="climber-head" cx="43" cy="28" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(-18 43 28)"></ellipse>
+        <path class="climber-neck" stroke="url(#${mapId}-limb)" d="M44 39 C45 42 47 43 50 44"></path>
+        <ellipse class="climber-hand" cx="9" cy="43" rx="5.6" ry="4.1" fill="url(#${mapId}-skin)" transform="rotate(-32 9 43)"></ellipse>
+        <ellipse class="climber-hand" cx="76" cy="5" rx="5.3" ry="4.2" fill="url(#${mapId}-skin)" transform="rotate(-8 76 5)"></ellipse>
+        <ellipse class="climber-foot" cx="17" cy="125" rx="8.8" ry="3.8" fill="url(#${mapId}-skin)" transform="rotate(-5 17 125)"></ellipse>
+        <ellipse class="climber-foot" cx="96" cy="117" rx="8" ry="3.7" fill="url(#${mapId}-skin)" transform="rotate(24 96 117)"></ellipse>
+        <path class="climber-highlight" d="M40 45 C47 40 57 41 62 50"></path>
+        <path class="climber-highlight" d="M61 42 C68 35 71 26 73 15"></path>
+        <path class="climber-highlight" d="M45 75 C42 88 35 106 25 121"></path>
       </g>
       ${
         interactive
           ? BODY_ZONES.map((zone) => {
               const selected = selectedKeys.includes(zone.key);
+              const radius = compact ? 3 : zone.radius;
               return `
                 <circle
                   class="zone-hit ${selected ? "selected" : ""}"
                   cx="${zone.x}"
                   cy="${zone.y}"
-                  r="${compact ? 3 : 4.5}"
+                  r="${radius}"
                   data-action="toggle-zone"
                   data-zone-key="${escapeAttr(zone.key)}"
                 >
@@ -788,7 +821,7 @@ function renderBodyMap({
               cy="${Number(marker.yPosition).toFixed(2)}"
               r="${compact ? 2.2 : 3}"
             >
-              <title>${escapeHtml(titleize(marker.bodyZoneKey || ""))}</title>
+              <title>${escapeHtml(bodyZoneLabel(marker.bodyZoneKey))}</title>
             </circle>
           `
         )
@@ -1444,6 +1477,10 @@ function titleize(value) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function bodyZoneLabel(value) {
+  return BODY_ZONE_BY_KEY[value]?.label || titleize(value);
 }
 
 function groupBy(items, key) {
