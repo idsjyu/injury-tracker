@@ -36,20 +36,20 @@ const BODY_ZONES = [
   ["left_elbow", "Left Elbow", 22, 55, 4.3],
   ["left_forearm", "Left Forearm", 17, 51, 4.3],
   ["left_wrist", "Left Wrist", 12, 47, 4],
-  ["left_hand", "Left Hand", 9, 43, 4.4],
-  ["left_thumb", "Left Thumb", 14, 40, 3.4],
-  ["left_ring", "Left Ring Finger", 7, 44, 3.2],
-  ["left_middle", "Left Middle Finger", 8, 41, 3.2],
+  ["left_hand", "Left Hand", 10, 45, 3.2],
+  ["left_thumb", "Left Thumb", 16, 40, 2.6],
+  ["left_ring", "Left Ring Finger", 4, 47, 2.4],
+  ["left_middle", "Left Middle Finger", 4, 40, 2.4],
   ["right_shoulder", "Right Shoulder", 61, 42, 4.5],
   ["right_upper_arm", "Right Upper Arm", 68, 31, 4.4],
   ["right_elbow", "Right Elbow", 72, 24, 4.3],
   ["right_forearm", "Right Forearm", 73, 15, 4.3],
   ["right_wrist", "Right Wrist", 74, 9, 4],
-  ["right_hand", "Right Hand", 76, 5, 4.4],
-  ["right_thumb", "Right Thumb", 81, 6, 3.4],
-  ["right_ring", "Right Ring Finger", 76, 3, 3.2],
-  ["right_middle", "Right Middle Finger", 73, 2, 3.2],
-  ["right_pinky", "Right Pinky Finger", 79, 2, 3.2],
+  ["right_hand", "Right Hand", 76, 7.5, 3.2],
+  ["right_thumb", "Right Thumb", 82, 8.5, 2.6],
+  ["right_ring", "Right Ring Finger", 76, 0.7, 2.4],
+  ["right_middle", "Right Middle Finger", 72, 0.5, 2.4],
+  ["right_pinky", "Right Pinky Finger", 80, 0.8, 2.4],
   ["left_thigh", "Left Thigh", 43, 84, 4.7],
   ["left_knee", "Left Knee", 37, 98, 4.4],
   ["left_shin", "Left Shin", 31, 111, 4.4],
@@ -67,6 +67,86 @@ const BODY_ZONES = [
 const BODY_ZONE_BY_KEY = Object.fromEntries(
   BODY_ZONES.map((zone) => [zone.key, zone])
 );
+
+const BODY_ZONE_GROUPS = {
+  head: "head",
+  neck: "torso",
+  chest: "torso",
+  abdomen: "torso",
+  hip_left: "torso",
+  hip_right: "torso",
+  left_shoulder: "leftArm",
+  left_upper_arm: "leftArm",
+  left_elbow: "leftArm",
+  left_forearm: "leftArm",
+  left_wrist: "leftArm",
+  left_hand: "leftArm",
+  left_thumb: "leftArm",
+  left_ring: "leftArm",
+  left_middle: "leftArm",
+  right_shoulder: "rightArm",
+  right_upper_arm: "rightArm",
+  right_elbow: "rightArm",
+  right_forearm: "rightArm",
+  right_wrist: "rightArm",
+  right_hand: "rightArm",
+  right_thumb: "rightArm",
+  right_ring: "rightArm",
+  right_middle: "rightArm",
+  right_pinky: "rightArm",
+  left_thigh: "leftLeg",
+  left_knee: "leftLeg",
+  left_shin: "leftLeg",
+  left_calf: "leftLeg",
+  left_ankle: "leftLeg",
+  left_foot: "leftLeg",
+  right_thigh: "rightLeg",
+  right_knee: "rightLeg",
+  right_shin: "rightLeg",
+  right_calf: "rightLeg",
+  right_ankle: "rightLeg",
+  right_foot: "rightLeg"
+};
+
+const POSE_VARIANTS = [
+  {
+    id: "high-right",
+    transforms: {}
+  },
+  {
+    id: "left-lockoff",
+    transforms: {
+      head: { dx: -1.4, dy: 0.8, angle: -5, cx: 43, cy: 28 },
+      torso: { dx: -0.6, dy: 0.4, angle: -3.5, cx: 50, cy: 62 },
+      leftArm: { dx: -2.2, dy: -0.4, angle: -8, cx: 36, cy: 47 },
+      rightArm: { dx: -1.2, dy: 3.4, angle: 8, cx: 61, cy: 42 },
+      leftLeg: { dx: 1.8, dy: 0.8, angle: 6, cx: 45, cy: 75 },
+      rightLeg: { dx: -3.2, dy: 2.8, angle: -8, cx: 59, cy: 72 }
+    }
+  },
+  {
+    id: "wide-stem",
+    transforms: {
+      head: { dx: 1, dy: -0.4, angle: 4, cx: 43, cy: 28 },
+      torso: { dx: 0.4, dy: 0.2, angle: 2.8, cx: 50, cy: 62 },
+      leftArm: { dx: -2.8, dy: 1.2, angle: -5, cx: 36, cy: 47 },
+      rightArm: { dx: 2.2, dy: -1.8, angle: 4.5, cx: 61, cy: 42 },
+      leftLeg: { dx: -3.6, dy: -0.4, angle: -7, cx: 45, cy: 75 },
+      rightLeg: { dx: 3.4, dy: -0.2, angle: 8, cx: 59, cy: 72 }
+    }
+  },
+  {
+    id: "drop-knee",
+    transforms: {
+      head: { dx: 0.5, dy: 1, angle: -2, cx: 43, cy: 28 },
+      torso: { dx: 0.2, dy: 1.2, angle: -1.5, cx: 50, cy: 62 },
+      leftArm: { dx: 1.2, dy: 1.6, angle: 5, cx: 36, cy: 47 },
+      rightArm: { dx: 0.6, dy: -1.2, angle: -3, cx: 61, cy: 42 },
+      leftLeg: { dx: 2.8, dy: -1.2, angle: 9, cx: 45, cy: 75 },
+      rightLeg: { dx: -3.8, dy: 4, angle: -13, cx: 59, cy: 72 }
+    }
+  }
+];
 
 let bodyMapRenderId = 0;
 
@@ -324,7 +404,7 @@ function renderMemberCard(member) {
   return `
     <a class="member-card" href="#/member/${escapeAttr(member.id)}">
       <div class="mini-map">
-        ${renderBodyMap({ markers, compact: true })}
+        ${renderBodyMap({ markers, compact: true, poseSeed: member.id })}
       </div>
       <div class="card-main">
         <div class="card-title-row">
@@ -423,7 +503,7 @@ function renderMember(memberId) {
 
       <section class="profile-panel">
         <div class="profile-map">
-          ${renderBodyMap({ markers })}
+          ${renderBodyMap({ markers, poseSeed: member.id })}
         </div>
         <div class="profile-copy">
           <h1>${escapeHtml(member.name)}</h1>
@@ -525,7 +605,7 @@ function renderInjuryCard(member, injury, unlocked) {
   const markers = getMarkersForInjuries([injury]);
   return `
     <article class="injury-card">
-      <div class="injury-map">${renderBodyMap({ markers, compact: true })}</div>
+      <div class="injury-map">${renderBodyMap({ markers, compact: true, poseSeed: member.id })}</div>
       <div class="injury-body">
         <div class="card-title-row">
           <h3>${escapeHtml(injury.injuryTitle)}</h3>
@@ -611,7 +691,8 @@ function renderInjuryForm(memberId, injuryId = "") {
             <div class="picker-title">Where? <span>(tap body, up to 3)</span></div>
             ${renderBodyMap({
               selectedKeys: draft.selectedZones,
-              interactive: true
+              interactive: true,
+              poseSeed: member.id
             })}
             <label class="search-field compact-search">
               <span class="search-icon"></span>
@@ -723,11 +804,14 @@ function renderBodyMap({
   markers = [],
   selectedKeys = [],
   interactive = false,
-  compact = false
+  compact = false,
+  poseSeed = ""
 } = {}) {
   const mapId = `body-map-${bodyMapRenderId++}`;
+  const pose = getPoseVariant(poseSeed);
+  const poseZones = BODY_ZONES.map((zone) => getZoneForPose(zone.key, pose));
   const selectedMarkers = selectedKeys
-    .map((key) => BODY_ZONE_BY_KEY[key])
+    .map((key) => getZoneForPose(key, pose))
     .filter(Boolean)
     .map((zone) => ({
       bodyZoneKey: zone.key,
@@ -735,18 +819,19 @@ function renderBodyMap({
       yPosition: zone.y
     }));
   const allMarkers = [...markers, ...selectedMarkers].map((marker) => {
-    const zone = BODY_ZONE_BY_KEY[marker.bodyZoneKey];
+    const zone = getZoneForPose(marker.bodyZoneKey, pose);
     return {
       ...marker,
       xPosition: zone?.x ?? marker.xPosition,
       yPosition: zone?.y ?? marker.yPosition
     };
   });
+  const transforms = pose.transforms || {};
 
   return `
     <svg
       class="body-map ${compact ? "compact" : ""} ${interactive ? "interactive" : ""}"
-      viewBox="0 0 100 130"
+      viewBox="-4 -4 108 138"
       role="img"
       aria-label="Body injury map"
     >
@@ -771,30 +856,50 @@ function renderBodyMap({
       </defs>
       <ellipse class="wall-shadow" cx="50" cy="126" rx="35" ry="3.2"></ellipse>
       <g class="wall-holds">
-        <ellipse cx="76" cy="4" rx="5" ry="2.3" fill="url(#${mapId}-hold)" transform="rotate(-8 76 4)"></ellipse>
-        <ellipse cx="8" cy="43" rx="5.6" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(-31 8 43)"></ellipse>
-        <ellipse cx="97" cy="117" rx="5.5" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(22 97 117)"></ellipse>
-        <ellipse cx="16" cy="126" rx="5.3" ry="2.4" fill="url(#${mapId}-hold)" transform="rotate(-6 16 126)"></ellipse>
+        <g transform="${svgTransform(transforms.rightArm)}">
+          <ellipse cx="76" cy="4" rx="5" ry="2.3" fill="url(#${mapId}-hold)" transform="rotate(-8 76 4)"></ellipse>
+        </g>
+        <g transform="${svgTransform(transforms.leftArm)}">
+          <ellipse cx="8" cy="43" rx="5.6" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(-31 8 43)"></ellipse>
+        </g>
+        <g transform="${svgTransform(transforms.rightLeg)}">
+          <ellipse cx="97" cy="117" rx="5.5" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(22 97 117)"></ellipse>
+        </g>
+        <g transform="${svgTransform(transforms.leftLeg)}">
+          <ellipse cx="16" cy="126" rx="5.3" ry="2.4" fill="url(#${mapId}-hold)" transform="rotate(-6 16 126)"></ellipse>
+        </g>
       </g>
       <g class="body-base" filter="url(#${mapId}-soft-shadow)">
-        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
-        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
-        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
-        <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
-        <path class="climber-torso" fill="url(#${mapId}-skin)" d="M39 42 C47 36 61 38 65 49 C71 62 67 80 54 85 C41 90 31 77 32 61 C33 51 35 45 39 42 Z"></path>
-        <ellipse class="climber-head" cx="43" cy="28" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(-18 43 28)"></ellipse>
-        <path class="climber-neck" stroke="url(#${mapId}-limb)" d="M44 39 C45 42 47 43 50 44"></path>
-        <ellipse class="climber-hand" cx="9" cy="43" rx="5.6" ry="4.1" fill="url(#${mapId}-skin)" transform="rotate(-32 9 43)"></ellipse>
-        <ellipse class="climber-hand" cx="76" cy="5" rx="5.3" ry="4.2" fill="url(#${mapId}-skin)" transform="rotate(-8 76 5)"></ellipse>
-        <ellipse class="climber-foot" cx="17" cy="125" rx="8.8" ry="3.8" fill="url(#${mapId}-skin)" transform="rotate(-5 17 125)"></ellipse>
-        <ellipse class="climber-foot" cx="96" cy="117" rx="8" ry="3.7" fill="url(#${mapId}-skin)" transform="rotate(24 96 117)"></ellipse>
-        <path class="climber-highlight" d="M40 45 C47 40 57 41 62 50"></path>
-        <path class="climber-highlight" d="M61 42 C68 35 71 26 73 15"></path>
-        <path class="climber-highlight" d="M45 75 C42 88 35 106 25 121"></path>
+        <g transform="${svgTransform(transforms.leftArm)}">
+          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
+          <ellipse class="climber-hand" cx="9" cy="43" rx="5.6" ry="4.1" fill="url(#${mapId}-skin)" transform="rotate(-32 9 43)"></ellipse>
+        </g>
+        <g transform="${svgTransform(transforms.rightArm)}">
+          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
+          <ellipse class="climber-hand" cx="76" cy="5" rx="5.3" ry="4.2" fill="url(#${mapId}-skin)" transform="rotate(-8 76 5)"></ellipse>
+          <path class="climber-highlight" d="M61 42 C68 35 71 26 73 15"></path>
+        </g>
+        <g transform="${svgTransform(transforms.leftLeg)}">
+          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
+          <ellipse class="climber-foot" cx="17" cy="125" rx="8.8" ry="3.8" fill="url(#${mapId}-skin)" transform="rotate(-5 17 125)"></ellipse>
+          <path class="climber-highlight" d="M45 75 C42 88 35 106 25 121"></path>
+        </g>
+        <g transform="${svgTransform(transforms.rightLeg)}">
+          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
+          <ellipse class="climber-foot" cx="96" cy="117" rx="8" ry="3.7" fill="url(#${mapId}-skin)" transform="rotate(24 96 117)"></ellipse>
+        </g>
+        <g transform="${svgTransform(transforms.torso)}">
+          <path class="climber-torso" fill="url(#${mapId}-skin)" d="M39 42 C47 36 61 38 65 49 C71 62 67 80 54 85 C41 90 31 77 32 61 C33 51 35 45 39 42 Z"></path>
+          <path class="climber-neck" stroke="url(#${mapId}-limb)" d="M44 39 C45 42 47 43 50 44"></path>
+          <path class="climber-highlight" d="M40 45 C47 40 57 41 62 50"></path>
+        </g>
+        <g transform="${svgTransform(transforms.head)}">
+          <ellipse class="climber-head" cx="43" cy="28" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(-18 43 28)"></ellipse>
+        </g>
       </g>
       ${
         interactive
-          ? BODY_ZONES.map((zone) => {
+          ? poseZones.map((zone) => {
               const selected = selectedKeys.includes(zone.key);
               const radius = compact ? 3 : zone.radius;
               return `
@@ -930,7 +1035,10 @@ async function submitInjuryForm(form, data) {
 
   await unlockMember(memberId, pin, { renderAfter: false });
 
-  const zones = draft.selectedZones.map((key) => BODY_ZONE_BY_KEY[key]).filter(Boolean);
+  const pose = getPoseVariant(memberId);
+  const zones = draft.selectedZones
+    .map((key) => getZoneForPose(key, pose))
+    .filter(Boolean);
   const description = String(data.get("description") || "").trim();
   const notes = String(data.get("notes") || "").trim();
   const injuryTitle = zones.map((zone) => zone.label).join(", ") || description || "Injury";
@@ -1481,6 +1589,69 @@ function titleize(value) {
 
 function bodyZoneLabel(value) {
   return BODY_ZONE_BY_KEY[value]?.label || titleize(value);
+}
+
+function getPoseVariant(seed) {
+  const index = hashString(String(seed || "default")) % POSE_VARIANTS.length;
+  return POSE_VARIANTS[index];
+}
+
+function hashString(value) {
+  let hash = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
+  }
+  return hash;
+}
+
+function getZoneForPose(key, pose) {
+  const zone = BODY_ZONE_BY_KEY[key];
+  if (!zone) return null;
+
+  const group = BODY_ZONE_GROUPS[key] || "torso";
+  const point = transformPoint(zone, pose.transforms?.[group]);
+  return {
+    ...zone,
+    x: point.x,
+    y: point.y
+  };
+}
+
+function transformPoint(point, transform = {}) {
+  const { a, b, c, d, e, f } = transformMatrix(transform);
+  return {
+    x: a * point.x + c * point.y + e,
+    y: b * point.x + d * point.y + f
+  };
+}
+
+function svgTransform(transform = {}) {
+  if (!transform || (!transform.dx && !transform.dy && !transform.angle)) return "";
+  const { a, b, c, d, e, f } = transformMatrix(transform);
+  return `matrix(${formatNumber(a)} ${formatNumber(b)} ${formatNumber(c)} ${formatNumber(d)} ${formatNumber(e)} ${formatNumber(f)})`;
+}
+
+function transformMatrix(transform = {}) {
+  const angle = ((transform.angle || 0) * Math.PI) / 180;
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  const cx = transform.cx || 0;
+  const cy = transform.cy || 0;
+  const dx = transform.dx || 0;
+  const dy = transform.dy || 0;
+
+  return {
+    a: cos,
+    b: sin,
+    c: -sin,
+    d: cos,
+    e: cx - cos * cx + sin * cy + dx,
+    f: cy - sin * cx - cos * cy + dy
+  };
+}
+
+function formatNumber(value) {
+  return Number(value.toFixed(4));
 }
 
 function groupBy(items, key) {

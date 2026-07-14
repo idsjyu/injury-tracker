@@ -755,6 +755,7 @@ textarea:focus {
   stroke: rgba(216, 101, 44, 0.14);
   stroke-width: 0.8;
   cursor: pointer;
+  pointer-events: all;
   vector-effect: non-scaling-stroke;
 }
 
