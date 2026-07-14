@@ -3,6 +3,7 @@ create extension if not exists pgcrypto;
 create table if not exists members (
   id text primary key,
   name text not null,
+  pose_variant text not null default 'back-high-step',
   activity_state_override text check (
     activity_state_override is null
     or activity_state_override in ('active', 'supposed_to_be_resting', 'resting')
@@ -12,6 +13,33 @@ create table if not exists members (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table members
+add column if not exists pose_variant text;
+
+update members
+set pose_variant = case id
+  when '69eefe57479beb6eb9d3ab94' then 'back-high-step'
+  when '69df96d203f16d16fa359849' then 'back-frog-sit'
+  when '69de89a204b6c76cca2ee8aa' then 'back-high-flag'
+  when '69de8141b641914647ac4807' then 'back-straight-hang'
+  when '69de6ed4d2ed611cdd74ff6f' then 'back-side-reach'
+  when '69de696486dbd8b0c38ff2e0' then 'back-high-step'
+  when '69de66ae4c1866a759800426' then 'back-side-reach'
+  when '69de6176d02099e81b39f5e5' then 'back-frog-sit'
+  when '69de60c82066868e774a911c' then 'back-straight-hang'
+  when '69de5d2206eb9d520685c3e0' then 'back-high-flag'
+  when '69dd5147356d7d0ee50227a9' then 'back-high-step'
+  when '69dd4f4bf6aa257f3edbb82d' then 'back-frog-sit'
+  else 'back-high-step'
+end
+where pose_variant is null or trim(pose_variant) = '';
+
+alter table members
+alter column pose_variant set default 'back-high-step';
+
+alter table members
+alter column pose_variant set not null;
 
 create table if not exists injuries (
   id text primary key,
@@ -47,6 +75,20 @@ begin
   new.updated_at = now();
   return new;
 end;
+$$;
+
+create or replace function random_pose_variant_id()
+returns text
+language sql
+volatile
+as $$
+  select (array[
+    'back-high-step',
+    'back-frog-sit',
+    'back-straight-hang',
+    'back-side-reach',
+    'back-high-flag'
+  ])[floor(random() * 5)::int + 1];
 $$;
 
 drop trigger if exists members_set_updated_at on members;
@@ -185,8 +227,8 @@ begin
 
   next_member_id := gen_random_uuid()::text;
 
-  insert into members (id, name, pin_hash)
-  values (next_member_id, trim(p_name), crypt('0000', gen_salt('bf')));
+  insert into members (id, name, pose_variant, pin_hash)
+  values (next_member_id, trim(p_name), random_pose_variant_id(), crypt('0000', gen_salt('bf')));
 
   return next_member_id;
 end;

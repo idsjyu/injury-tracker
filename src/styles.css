@@ -733,21 +733,50 @@ textarea:focus {
   stroke-linecap: round;
 }
 
-.climber-torso,
+.climber-shirt,
+.climber-shorts,
 .climber-head,
 .climber-hand,
-.climber-foot {
+.climber-foot,
+.chalk-bag {
   stroke: rgba(255, 255, 255, 0.34);
   stroke-width: 0.8;
   vector-effect: non-scaling-stroke;
 }
 
-.climber-highlight {
+.climber-finger-lines,
+.hair-sweep,
+.climber-shoe-sole,
+.chalk-bag-rim {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.52);
-  stroke-width: 1.7;
+  stroke: rgba(35, 30, 26, 0.26);
+  stroke-width: 1;
   stroke-linecap: round;
-  opacity: 0.75;
+  vector-effect: non-scaling-stroke;
+}
+
+.shirt-back-shadow {
+  fill: rgba(255, 255, 255, 0.14);
+}
+
+.harness-strap,
+.harness-belt {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.82;
+  vector-effect: non-scaling-stroke;
+}
+
+.harness-belt {
+  stroke-width: 2.2;
+}
+
+.climber-hair {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 0.5;
+  vector-effect: non-scaling-stroke;
 }
 
 .zone-hit {

@@ -3,6 +3,7 @@ export const SEED_DATA = {
     {
       "id": "69eefe57479beb6eb9d3ab94",
       "name": "Lisa",
+      "poseVariant": "back-high-step",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-27T06:12:39.003000",
@@ -12,6 +13,7 @@ export const SEED_DATA = {
     {
       "id": "69df96d203f16d16fa359849",
       "name": "Roel",
+      "poseVariant": "back-frog-sit",
       "activityStateOverride": null,
       "expectedReturnDate": "2026-04-18",
       "createdAt": "2026-04-15T13:46:58.589000",
@@ -21,6 +23,7 @@ export const SEED_DATA = {
     {
       "id": "69de89a204b6c76cca2ee8aa",
       "name": "Blablableh",
+      "poseVariant": "back-high-flag",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T18:38:26.372000",
@@ -30,6 +33,7 @@ export const SEED_DATA = {
     {
       "id": "69de8141b641914647ac4807",
       "name": "W",
+      "poseVariant": "back-straight-hang",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T18:02:41.063000",
@@ -39,6 +43,7 @@ export const SEED_DATA = {
     {
       "id": "69de6ed4d2ed611cdd74ff6f",
       "name": "Tim",
+      "poseVariant": "back-side-reach",
       "activityStateOverride": null,
       "expectedReturnDate": "2077-08-16",
       "createdAt": "2026-04-14T16:44:04.185000",
@@ -48,6 +53,7 @@ export const SEED_DATA = {
     {
       "id": "69de696486dbd8b0c38ff2e0",
       "name": "Mathieu",
+      "poseVariant": "back-high-step",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T16:20:52.053000",
@@ -57,6 +63,7 @@ export const SEED_DATA = {
     {
       "id": "69de66ae4c1866a759800426",
       "name": "V",
+      "poseVariant": "back-side-reach",
       "activityStateOverride": "supposed_to_be_resting",
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T16:09:18.207000",
@@ -66,6 +73,7 @@ export const SEED_DATA = {
     {
       "id": "69de6176d02099e81b39f5e5",
       "name": "Anonymous 3",
+      "poseVariant": "back-frog-sit",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T15:47:02.609000",
@@ -75,6 +83,7 @@ export const SEED_DATA = {
     {
       "id": "69de60c82066868e774a911c",
       "name": "Andrius",
+      "poseVariant": "back-straight-hang",
       "activityStateOverride": "resting",
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T15:44:08.497000",
@@ -84,6 +93,7 @@ export const SEED_DATA = {
     {
       "id": "69de5d2206eb9d520685c3e0",
       "name": "Chee",
+      "poseVariant": "back-high-flag",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-14T15:28:34.243000",
@@ -93,6 +103,7 @@ export const SEED_DATA = {
     {
       "id": "69dd5147356d7d0ee50227a9",
       "name": "Wessel",
+      "poseVariant": "back-high-step",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-13T20:25:43.681000",
@@ -102,6 +113,7 @@ export const SEED_DATA = {
     {
       "id": "69dd4f4bf6aa257f3edbb82d",
       "name": "Sujin de pujin",
+      "poseVariant": "back-frog-sit",
       "activityStateOverride": null,
       "expectedReturnDate": null,
       "createdAt": "2026-04-13T20:17:15",

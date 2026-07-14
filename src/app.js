@@ -108,42 +108,124 @@ const BODY_ZONE_GROUPS = {
   right_foot: "rightLeg"
 };
 
+const DEFAULT_AVATAR_OUTFIT = {
+  skinLight: "#ffd4af",
+  skinMid: "#e8a578",
+  skinDark: "#b96f4d",
+  shirtLight: "#ff8d45",
+  shirtDark: "#ec5d23",
+  shortsLight: "#48555f",
+  shortsDark: "#242b33",
+  hairLight: "#c77a28",
+  hairDark: "#7f451f",
+  shoe: "#22a9c8",
+  harness: "#2b3844"
+};
+
 const POSE_VARIANTS = [
   {
-    id: "high-right",
-    transforms: {}
-  },
-  {
-    id: "left-lockoff",
+    id: "back-high-step",
+    name: "High Step",
+    outfit: {
+      shirtLight: "#ff8e47",
+      shirtDark: "#f15d22",
+      shortsLight: "#4a5661",
+      shortsDark: "#25303a",
+      hairLight: "#c9872f",
+      hairDark: "#80451c",
+      shoe: "#1eb2d0"
+    },
     transforms: {
-      head: { dx: -1.4, dy: 0.8, angle: -5, cx: 43, cy: 28 },
-      torso: { dx: -0.6, dy: 0.4, angle: -3.5, cx: 50, cy: 62 },
-      leftArm: { dx: -2.2, dy: -0.4, angle: -8, cx: 36, cy: 47 },
-      rightArm: { dx: -1.2, dy: 3.4, angle: 8, cx: 61, cy: 42 },
-      leftLeg: { dx: 1.8, dy: 0.8, angle: 6, cx: 45, cy: 75 },
-      rightLeg: { dx: -3.2, dy: 2.8, angle: -8, cx: 59, cy: 72 }
+      head: { dx: -1.2, dy: 0.2, angle: -6, cx: 43, cy: 28 },
+      torso: { dx: -0.8, dy: 0.4, angle: -4, cx: 50, cy: 62 },
+      leftArm: { dx: 0.5, dy: -2.5, angle: -54, cx: 36, cy: 47 },
+      rightArm: { dx: 1, dy: -1.5, angle: 6, cx: 61, cy: 42 },
+      leftLeg: { dx: 5, dy: -8, angle: 34, cx: 45, cy: 75 },
+      rightLeg: { dx: -3.5, dy: 1.5, angle: -12, cx: 59, cy: 72 }
     }
   },
   {
-    id: "wide-stem",
+    id: "back-frog-sit",
+    name: "Frog Sit",
+    outfit: {
+      shirtLight: "#ff9387",
+      shirtDark: "#f0665d",
+      shortsLight: "#5a85dd",
+      shortsDark: "#315bb6",
+      hairLight: "#ad6038",
+      hairDark: "#74361f",
+      shoe: "#ff706e"
+    },
     transforms: {
-      head: { dx: 1, dy: -0.4, angle: 4, cx: 43, cy: 28 },
-      torso: { dx: 0.4, dy: 0.2, angle: 2.8, cx: 50, cy: 62 },
-      leftArm: { dx: -2.8, dy: 1.2, angle: -5, cx: 36, cy: 47 },
-      rightArm: { dx: 2.2, dy: -1.8, angle: 4.5, cx: 61, cy: 42 },
-      leftLeg: { dx: -3.6, dy: -0.4, angle: -7, cx: 45, cy: 75 },
-      rightLeg: { dx: 3.4, dy: -0.2, angle: 8, cx: 59, cy: 72 }
+      head: { dx: -0.2, dy: -0.4, angle: 1, cx: 43, cy: 28 },
+      torso: { dx: 0, dy: 4.8, angle: 0, cx: 50, cy: 62 },
+      leftArm: { dx: 1.2, dy: -7, angle: -82, cx: 36, cy: 47 },
+      rightArm: { dx: -0.5, dy: -3, angle: -6, cx: 61, cy: 42 },
+      leftLeg: { dx: -1.5, dy: -0.5, angle: 22, cx: 45, cy: 75 },
+      rightLeg: { dx: 2.2, dy: 2, angle: 28, cx: 59, cy: 72 }
     }
   },
   {
-    id: "drop-knee",
+    id: "back-straight-hang",
+    name: "Straight Hang",
+    outfit: {
+      shirtLight: "#62b6f3",
+      shirtDark: "#358bd6",
+      shortsLight: "#3d4248",
+      shortsDark: "#25272b",
+      hairLight: "#5a4b45",
+      hairDark: "#312724",
+      shoe: "#262a2f"
+    },
     transforms: {
-      head: { dx: 0.5, dy: 1, angle: -2, cx: 43, cy: 28 },
-      torso: { dx: 0.2, dy: 1.2, angle: -1.5, cx: 50, cy: 62 },
-      leftArm: { dx: 1.2, dy: 1.6, angle: 5, cx: 36, cy: 47 },
-      rightArm: { dx: 0.6, dy: -1.2, angle: -3, cx: 61, cy: 42 },
-      leftLeg: { dx: 2.8, dy: -1.2, angle: 9, cx: 45, cy: 75 },
-      rightLeg: { dx: -3.8, dy: 4, angle: -13, cx: 59, cy: 72 }
+      head: { dx: 0.8, dy: -0.8, angle: 5, cx: 43, cy: 28 },
+      torso: { dx: 0.6, dy: 0.4, angle: 1.5, cx: 50, cy: 62 },
+      leftArm: { dx: 3, dy: -8.5, angle: -92, cx: 36, cy: 47 },
+      rightArm: { dx: -1, dy: -2.4, angle: -3, cx: 61, cy: 42 },
+      leftLeg: { dx: 6.2, dy: -1.8, angle: -10, cx: 45, cy: 75 },
+      rightLeg: { dx: -7.5, dy: 0.5, angle: 22, cx: 59, cy: 72 }
+    }
+  },
+  {
+    id: "back-side-reach",
+    name: "Side Reach",
+    outfit: {
+      shirtLight: "#24b3bd",
+      shirtDark: "#147b8b",
+      shortsLight: "#4e5561",
+      shortsDark: "#303541",
+      hairLight: "#b65a39",
+      hairDark: "#71301f",
+      shoe: "#51545e"
+    },
+    transforms: {
+      head: { dx: 2.8, dy: 2, angle: 10, cx: 43, cy: 28 },
+      torso: { dx: 2.8, dy: 3, angle: 12, cx: 50, cy: 62 },
+      leftArm: { dx: -6, dy: 2.5, angle: 5, cx: 36, cy: 47 },
+      rightArm: { dx: -2.5, dy: -2.5, angle: -12, cx: 61, cy: 42 },
+      leftLeg: { dx: 7, dy: -8, angle: 42, cx: 45, cy: 75 },
+      rightLeg: { dx: 3.2, dy: 0.5, angle: 13, cx: 59, cy: 72 }
+    }
+  },
+  {
+    id: "back-high-flag",
+    name: "High Flag",
+    outfit: {
+      shirtLight: "#5b5658",
+      shirtDark: "#343234",
+      shortsLight: "#444247",
+      shortsDark: "#242327",
+      hairLight: "#51443f",
+      hairDark: "#27211f",
+      shoe: "#252329"
+    },
+    transforms: {
+      head: { dx: 2.2, dy: -0.2, angle: 7, cx: 43, cy: 28 },
+      torso: { dx: 1.2, dy: 0.8, angle: 6, cx: 50, cy: 62 },
+      leftArm: { dx: 2.4, dy: -5.5, angle: -78, cx: 36, cy: 47 },
+      rightArm: { dx: -11, dy: 9, angle: 38, cx: 61, cy: 42 },
+      leftLeg: { dx: 9, dy: -2, angle: -18, cx: 45, cy: 75 },
+      rightLeg: { dx: 2.5, dy: -19, angle: -70, cx: 59, cy: 72 }
     }
   }
 ];
@@ -404,7 +486,7 @@ function renderMemberCard(member) {
   return `
     <a class="member-card" href="#/member/${escapeAttr(member.id)}">
       <div class="mini-map">
-        ${renderBodyMap({ markers, compact: true, poseSeed: member.id })}
+        ${renderBodyMap({ markers, compact: true, poseVariant: poseValueForMember(member) })}
       </div>
       <div class="card-main">
         <div class="card-title-row">
@@ -503,7 +585,7 @@ function renderMember(memberId) {
 
       <section class="profile-panel">
         <div class="profile-map">
-          ${renderBodyMap({ markers, poseSeed: member.id })}
+          ${renderBodyMap({ markers, poseVariant: poseValueForMember(member) })}
         </div>
         <div class="profile-copy">
           <h1>${escapeHtml(member.name)}</h1>
@@ -605,7 +687,7 @@ function renderInjuryCard(member, injury, unlocked) {
   const markers = getMarkersForInjuries([injury]);
   return `
     <article class="injury-card">
-      <div class="injury-map">${renderBodyMap({ markers, compact: true, poseSeed: member.id })}</div>
+      <div class="injury-map">${renderBodyMap({ markers, compact: true, poseVariant: poseValueForMember(member) })}</div>
       <div class="injury-body">
         <div class="card-title-row">
           <h3>${escapeHtml(injury.injuryTitle)}</h3>
@@ -692,7 +774,7 @@ function renderInjuryForm(memberId, injuryId = "") {
             ${renderBodyMap({
               selectedKeys: draft.selectedZones,
               interactive: true,
-              poseSeed: member.id
+              poseVariant: poseValueForMember(member)
             })}
             <label class="search-field compact-search">
               <span class="search-icon"></span>
@@ -805,10 +887,12 @@ function renderBodyMap({
   selectedKeys = [],
   interactive = false,
   compact = false,
+  poseVariant = "",
   poseSeed = ""
 } = {}) {
   const mapId = `body-map-${bodyMapRenderId++}`;
-  const pose = getPoseVariant(poseSeed);
+  const pose = getPoseVariant(poseVariant || poseSeed);
+  const outfit = { ...DEFAULT_AVATAR_OUTFIT, ...(pose.outfit || {}) };
   const poseZones = BODY_ZONES.map((zone) => getZoneForPose(zone.key, pose));
   const selectedMarkers = selectedKeys
     .map((key) => getZoneForPose(key, pose))
@@ -831,20 +915,28 @@ function renderBodyMap({
   return `
     <svg
       class="body-map ${compact ? "compact" : ""} ${interactive ? "interactive" : ""}"
-      viewBox="-4 -4 108 138"
+      data-pose-id="${escapeAttr(pose.id)}"
+      viewBox="-16 -14 142 156"
       role="img"
       aria-label="Body injury map"
     >
       <defs>
-        <radialGradient id="${mapId}-skin" cx="32%" cy="22%" r="76%">
-          <stop offset="0%" stop-color="#ffffff"></stop>
-          <stop offset="42%" stop-color="#d9d8d4"></stop>
-          <stop offset="100%" stop-color="#8f8d88"></stop>
+        <radialGradient id="${mapId}-skin" cx="32%" cy="18%" r="82%">
+          <stop offset="0%" stop-color="${outfit.skinLight}"></stop>
+          <stop offset="55%" stop-color="${outfit.skinMid}"></stop>
+          <stop offset="100%" stop-color="${outfit.skinDark}"></stop>
         </radialGradient>
-        <linearGradient id="${mapId}-limb" x1="18%" y1="8%" x2="88%" y2="100%">
-          <stop offset="0%" stop-color="#f8f8f5"></stop>
-          <stop offset="50%" stop-color="#d1d0cb"></stop>
-          <stop offset="100%" stop-color="#85837e"></stop>
+        <linearGradient id="${mapId}-shirt" x1="26%" y1="8%" x2="90%" y2="100%">
+          <stop offset="0%" stop-color="${outfit.shirtLight}"></stop>
+          <stop offset="100%" stop-color="${outfit.shirtDark}"></stop>
+        </linearGradient>
+        <linearGradient id="${mapId}-shorts" x1="10%" y1="10%" x2="92%" y2="100%">
+          <stop offset="0%" stop-color="${outfit.shortsLight}"></stop>
+          <stop offset="100%" stop-color="${outfit.shortsDark}"></stop>
+        </linearGradient>
+        <linearGradient id="${mapId}-hair" x1="15%" y1="0%" x2="88%" y2="100%">
+          <stop offset="0%" stop-color="${outfit.hairLight}"></stop>
+          <stop offset="100%" stop-color="${outfit.hairDark}"></stop>
         </linearGradient>
         <linearGradient id="${mapId}-hold" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#e4dbd1"></stop>
@@ -871,30 +963,39 @@ function renderBodyMap({
       </g>
       <g class="body-base" filter="url(#${mapId}-soft-shadow)">
         <g transform="${svgTransform(transforms.leftArm)}">
-          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
+          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
           <ellipse class="climber-hand" cx="9" cy="43" rx="5.6" ry="4.1" fill="url(#${mapId}-skin)" transform="rotate(-32 9 43)"></ellipse>
+          <path class="climber-finger-lines" d="M6 41 L4 38 M9 39 L8 36 M12 40 L12 37"></path>
         </g>
         <g transform="${svgTransform(transforms.rightArm)}">
-          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
+          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
           <ellipse class="climber-hand" cx="76" cy="5" rx="5.3" ry="4.2" fill="url(#${mapId}-skin)" transform="rotate(-8 76 5)"></ellipse>
-          <path class="climber-highlight" d="M61 42 C68 35 71 26 73 15"></path>
+          <path class="climber-finger-lines" d="M73 3 L72 0 M77 2 L77 -1 M80 4 L82 1"></path>
         </g>
         <g transform="${svgTransform(transforms.leftLeg)}">
-          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
-          <ellipse class="climber-foot" cx="17" cy="125" rx="8.8" ry="3.8" fill="url(#${mapId}-skin)" transform="rotate(-5 17 125)"></ellipse>
-          <path class="climber-highlight" d="M45 75 C42 88 35 106 25 121"></path>
+          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
+          <ellipse class="climber-foot climber-shoe" cx="17" cy="125" rx="8.8" ry="3.8" fill="${outfit.shoe}" transform="rotate(-5 17 125)"></ellipse>
+          <path class="climber-shoe-sole" d="M10 126 C15 128 21 128 27 125"></path>
         </g>
         <g transform="${svgTransform(transforms.rightLeg)}">
-          <path class="climber-limb" stroke="url(#${mapId}-limb)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
-          <ellipse class="climber-foot" cx="96" cy="117" rx="8" ry="3.7" fill="url(#${mapId}-skin)" transform="rotate(24 96 117)"></ellipse>
+          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
+          <ellipse class="climber-foot climber-shoe" cx="96" cy="117" rx="8" ry="3.7" fill="${outfit.shoe}" transform="rotate(24 96 117)"></ellipse>
+          <path class="climber-shoe-sole" d="M89 116 C94 120 100 121 104 119"></path>
         </g>
         <g transform="${svgTransform(transforms.torso)}">
-          <path class="climber-torso" fill="url(#${mapId}-skin)" d="M39 42 C47 36 61 38 65 49 C71 62 67 80 54 85 C41 90 31 77 32 61 C33 51 35 45 39 42 Z"></path>
-          <path class="climber-neck" stroke="url(#${mapId}-limb)" d="M44 39 C45 42 47 43 50 44"></path>
-          <path class="climber-highlight" d="M40 45 C47 40 57 41 62 50"></path>
+          <path class="climber-neck" stroke="url(#${mapId}-skin)" d="M44 39 C45 42 47 43 50 44"></path>
+          <path class="climber-shirt" fill="url(#${mapId}-shirt)" d="M39 42 C47 36 61 38 65 49 C71 62 67 78 55 83 C43 88 32 77 32 61 C33 51 35 45 39 42 Z"></path>
+          <path class="shirt-back-shadow" d="M48 42 C44 52 44 67 50 81 C40 78 35 70 36 60 C37 51 40 45 48 42 Z"></path>
+          <path class="climber-shorts" fill="url(#${mapId}-shorts)" d="M35 68 C43 72 56 72 65 67 C67 74 63 82 55 86 C46 90 37 85 33 76 C32 73 33 70 35 68 Z"></path>
+          <path class="harness-strap" stroke="${outfit.harness}" d="M39 46 L57 75 M62 48 L44 77"></path>
+          <path class="harness-belt" stroke="${outfit.harness}" d="M34 67 C43 71 56 71 66 66"></path>
+          <ellipse class="chalk-bag" cx="59" cy="76" rx="5.2" ry="6.2" fill="#526273" transform="rotate(9 59 76)"></ellipse>
+          <path class="chalk-bag-rim" d="M54 72 C57 74 61 74 64 72"></path>
         </g>
         <g transform="${svgTransform(transforms.head)}">
           <ellipse class="climber-head" cx="43" cy="28" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(-18 43 28)"></ellipse>
+          <path class="climber-hair" fill="url(#${mapId}-hair)" d="M32 25 C33 16 41 11 50 16 C58 21 56 31 51 36 C47 29 39 32 34 31 C32 29 31 27 32 25 Z"></path>
+          <path class="hair-sweep" d="M36 19 C41 15 47 16 53 21 M34 24 C39 20 45 20 50 25"></path>
         </g>
       </g>
       ${
@@ -1035,7 +1136,7 @@ async function submitInjuryForm(form, data) {
 
   await unlockMember(memberId, pin, { renderAfter: false });
 
-  const pose = getPoseVariant(memberId);
+  const pose = getPoseVariant(poseValueForMember(member));
   const zones = draft.selectedZones
     .map((key) => getZoneForPose(key, pose))
     .filter(Boolean);
@@ -1226,8 +1327,10 @@ function enrichedMembers() {
     const currentInjuries = injuries.filter((injury) => injury.isCurrent);
     const automaticState = calculateAutomaticState(currentInjuries);
     const effectiveState = member.activityStateOverride || automaticState;
+    const poseVariant = getPoseVariant(member.poseVariant || member.id).id;
     return {
       ...member,
+      poseVariant,
       injuries: injuries.sort(compareInjuries),
       currentInjuries: currentInjuries.sort(compareInjuries),
       automaticState,
@@ -1321,6 +1424,7 @@ function createLocalStore() {
       const member = {
         id: `member_${Date.now().toString(36)}`,
         name: name.trim(),
+        poseVariant: randomPoseVariantId(),
         activityStateOverride: null,
         expectedReturnDate: null,
         createdAt: new Date().toISOString(),
@@ -1495,6 +1599,7 @@ function fromDbMember(row) {
   return {
     id: row.id,
     name: row.name,
+    poseVariant: row.pose_variant,
     activityStateOverride: row.activity_state_override,
     expectedReturnDate: row.expected_return_date,
     createdAt: row.created_at,
@@ -1591,9 +1696,20 @@ function bodyZoneLabel(value) {
   return BODY_ZONE_BY_KEY[value]?.label || titleize(value);
 }
 
-function getPoseVariant(seed) {
-  const index = hashString(String(seed || "default")) % POSE_VARIANTS.length;
+function poseValueForMember(member) {
+  return member?.poseVariant || member?.id || "";
+}
+
+function getPoseVariant(value) {
+  const variant = POSE_VARIANTS.find((pose) => pose.id === value);
+  if (variant) return variant;
+
+  const index = hashString(String(value || "default")) % POSE_VARIANTS.length;
   return POSE_VARIANTS[index];
+}
+
+function randomPoseVariantId() {
+  return POSE_VARIANTS[Math.floor(Math.random() * POSE_VARIANTS.length)].id;
 }
 
 function hashString(value) {
