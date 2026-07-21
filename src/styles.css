@@ -720,11 +720,44 @@ textarea:focus {
   opacity: 0.9;
 }
 
-.climber-limb {
+.climber-arm,
+.climber-leg,
+.climber-sleeve,
+.climber-shorts-leg,
+.climber-palm-link,
+.climber-shoe-shape,
+.climber-fingers {
   fill: none;
-  stroke-width: 10.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.climber-arm {
+  stroke-width: 9.5;
+}
+
+.climber-leg {
+  stroke-width: 11;
+}
+
+.climber-sleeve {
+  stroke-width: 12;
+}
+
+.climber-shorts-leg {
+  stroke-width: 13;
+}
+
+.climber-palm-link {
+  stroke-width: 6.5;
+}
+
+.climber-shoe-shape {
+  stroke-width: 9;
+}
+
+.climber-fingers {
+  stroke-width: 2.2;
 }
 
 .climber-neck {
@@ -737,14 +770,12 @@ textarea:focus {
 .climber-shorts,
 .climber-head,
 .climber-hand,
-.climber-foot,
 .chalk-bag {
   stroke: rgba(255, 255, 255, 0.34);
   stroke-width: 0.8;
   vector-effect: non-scaling-stroke;
 }
 
-.climber-finger-lines,
 .hair-sweep,
 .climber-shoe-sole,
 .chalk-bag-rim {

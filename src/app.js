@@ -68,46 +68,6 @@ const BODY_ZONE_BY_KEY = Object.fromEntries(
   BODY_ZONES.map((zone) => [zone.key, zone])
 );
 
-const BODY_ZONE_GROUPS = {
-  head: "head",
-  neck: "torso",
-  chest: "torso",
-  abdomen: "torso",
-  hip_left: "torso",
-  hip_right: "torso",
-  left_shoulder: "leftArm",
-  left_upper_arm: "leftArm",
-  left_elbow: "leftArm",
-  left_forearm: "leftArm",
-  left_wrist: "leftArm",
-  left_hand: "leftArm",
-  left_thumb: "leftArm",
-  left_ring: "leftArm",
-  left_middle: "leftArm",
-  right_shoulder: "rightArm",
-  right_upper_arm: "rightArm",
-  right_elbow: "rightArm",
-  right_forearm: "rightArm",
-  right_wrist: "rightArm",
-  right_hand: "rightArm",
-  right_thumb: "rightArm",
-  right_ring: "rightArm",
-  right_middle: "rightArm",
-  right_pinky: "rightArm",
-  left_thigh: "leftLeg",
-  left_knee: "leftLeg",
-  left_shin: "leftLeg",
-  left_calf: "leftLeg",
-  left_ankle: "leftLeg",
-  left_foot: "leftLeg",
-  right_thigh: "rightLeg",
-  right_knee: "rightLeg",
-  right_shin: "rightLeg",
-  right_calf: "rightLeg",
-  right_ankle: "rightLeg",
-  right_foot: "rightLeg"
-};
-
 const DEFAULT_AVATAR_OUTFIT = {
   skinLight: "#ffd4af",
   skinMid: "#e8a578",
@@ -135,13 +95,13 @@ const POSE_VARIANTS = [
       hairDark: "#80451c",
       shoe: "#1eb2d0"
     },
-    transforms: {
-      head: { dx: -1.2, dy: 0.2, angle: -6, cx: 43, cy: 28 },
-      torso: { dx: -0.8, dy: 0.4, angle: -4, cx: 50, cy: 62 },
-      leftArm: { dx: 0.5, dy: -2.5, angle: -54, cx: 36, cy: 47 },
-      rightArm: { dx: 1, dy: -1.5, angle: 6, cx: 61, cy: 42 },
-      leftLeg: { dx: 5, dy: -8, angle: 34, cx: 45, cy: 75 },
-      rightLeg: { dx: -3.5, dy: 1.5, angle: -12, cx: 59, cy: 72 }
+    headAngle: -5,
+    points: {
+      head: [51, 27], neck: [52, 40],
+      leftShoulder: [41, 44], leftElbow: [31, 29], leftWrist: [28, 15], leftHand: [27, 9],
+      rightShoulder: [64, 43], rightElbow: [75, 31], rightWrist: [81, 18], rightHand: [83, 12],
+      leftHip: [46, 77], leftKnee: [32, 87], leftAnkle: [23, 75], leftFoot: [16, 72],
+      rightHip: [62, 76], rightKnee: [65, 101], rightAnkle: [64, 123], rightFoot: [72, 126]
     }
   },
   {
@@ -156,13 +116,13 @@ const POSE_VARIANTS = [
       hairDark: "#74361f",
       shoe: "#ff706e"
     },
-    transforms: {
-      head: { dx: -0.2, dy: -0.4, angle: 1, cx: 43, cy: 28 },
-      torso: { dx: 0, dy: 4.8, angle: 0, cx: 50, cy: 62 },
-      leftArm: { dx: 1.2, dy: -7, angle: -82, cx: 36, cy: 47 },
-      rightArm: { dx: -0.5, dy: -3, angle: -6, cx: 61, cy: 42 },
-      leftLeg: { dx: -1.5, dy: -0.5, angle: 22, cx: 45, cy: 75 },
-      rightLeg: { dx: 2.2, dy: 2, angle: 28, cx: 59, cy: 72 }
+    headAngle: 0,
+    points: {
+      head: [54, 29], neck: [54, 42],
+      leftShoulder: [42, 46], leftElbow: [31, 30], leftWrist: [28, 16], leftHand: [28, 10],
+      rightShoulder: [66, 46], rightElbow: [77, 30], rightWrist: [80, 16], rightHand: [80, 10],
+      leftHip: [45, 77], leftKnee: [27, 89], leftAnkle: [18, 108], leftFoot: [10, 111],
+      rightHip: [63, 77], rightKnee: [82, 89], rightAnkle: [91, 108], rightFoot: [99, 111]
     }
   },
   {
@@ -177,13 +137,13 @@ const POSE_VARIANTS = [
       hairDark: "#312724",
       shoe: "#262a2f"
     },
-    transforms: {
-      head: { dx: 0.8, dy: -0.8, angle: 5, cx: 43, cy: 28 },
-      torso: { dx: 0.6, dy: 0.4, angle: 1.5, cx: 50, cy: 62 },
-      leftArm: { dx: 3, dy: -8.5, angle: -92, cx: 36, cy: 47 },
-      rightArm: { dx: -1, dy: -2.4, angle: -3, cx: 61, cy: 42 },
-      leftLeg: { dx: 6.2, dy: -1.8, angle: -10, cx: 45, cy: 75 },
-      rightLeg: { dx: -7.5, dy: 0.5, angle: 22, cx: 59, cy: 72 }
+    headAngle: 2,
+    points: {
+      head: [54, 31], neck: [54, 44],
+      leftShoulder: [42, 47], leftElbow: [35, 31], leftWrist: [33, 16], leftHand: [33, 10],
+      rightShoulder: [66, 47], rightElbow: [73, 31], rightWrist: [75, 16], rightHand: [75, 10],
+      leftHip: [46, 79], leftKnee: [44, 102], leftAnkle: [43, 123], leftFoot: [36, 127],
+      rightHip: [62, 79], rightKnee: [64, 102], rightAnkle: [66, 123], rightFoot: [73, 127]
     }
   },
   {
@@ -198,13 +158,13 @@ const POSE_VARIANTS = [
       hairDark: "#71301f",
       shoe: "#51545e"
     },
-    transforms: {
-      head: { dx: 2.8, dy: 2, angle: 10, cx: 43, cy: 28 },
-      torso: { dx: 2.8, dy: 3, angle: 12, cx: 50, cy: 62 },
-      leftArm: { dx: -6, dy: 2.5, angle: 5, cx: 36, cy: 47 },
-      rightArm: { dx: -2.5, dy: -2.5, angle: -12, cx: 61, cy: 42 },
-      leftLeg: { dx: 7, dy: -8, angle: 42, cx: 45, cy: 75 },
-      rightLeg: { dx: 3.2, dy: 0.5, angle: 13, cx: 59, cy: 72 }
+    headAngle: 8,
+    points: {
+      head: [56, 34], neck: [56, 47],
+      leftShoulder: [44, 49], leftElbow: [29, 49], leftWrist: [16, 53], leftHand: [10, 55],
+      rightShoulder: [68, 48], rightElbow: [78, 35], rightWrist: [84, 21], rightHand: [86, 15],
+      leftHip: [49, 80], leftKnee: [35, 91], leftAnkle: [24, 80], leftFoot: [16, 77],
+      rightHip: [66, 79], rightKnee: [83, 88], rightAnkle: [98, 98], rightFoot: [106, 97]
     }
   },
   {
@@ -219,13 +179,13 @@ const POSE_VARIANTS = [
       hairDark: "#27211f",
       shoe: "#252329"
     },
-    transforms: {
-      head: { dx: 2.2, dy: -0.2, angle: 7, cx: 43, cy: 28 },
-      torso: { dx: 1.2, dy: 0.8, angle: 6, cx: 50, cy: 62 },
-      leftArm: { dx: 2.4, dy: -5.5, angle: -78, cx: 36, cy: 47 },
-      rightArm: { dx: -11, dy: 9, angle: 38, cx: 61, cy: 42 },
-      leftLeg: { dx: 9, dy: -2, angle: -18, cx: 45, cy: 75 },
-      rightLeg: { dx: 2.5, dy: -19, angle: -70, cx: 59, cy: 72 }
+    headAngle: -3,
+    points: {
+      head: [51, 31], neck: [51, 44],
+      leftShoulder: [39, 47], leftElbow: [31, 31], leftWrist: [29, 16], leftHand: [29, 10],
+      rightShoulder: [63, 46], rightElbow: [79, 48], rightWrist: [94, 45], rightHand: [101, 42],
+      leftHip: [44, 78], leftKnee: [38, 101], leftAnkle: [30, 123], leftFoot: [23, 128],
+      rightHip: [61, 77], rightKnee: [74, 68], rightAnkle: [79, 46], rightFoot: [82, 36]
     }
   }
 ];
@@ -882,6 +842,107 @@ function renderMissing(message) {
   `;
 }
 
+function renderAvatar(pose, outfit, mapId) {
+  const points = getPosePoints(pose);
+  const leftSleeveEnd = interpolatePoint(points.leftShoulder, points.leftElbow, 0.3);
+  const rightSleeveEnd = interpolatePoint(points.rightShoulder, points.rightElbow, 0.3);
+  const leftShortEnd = interpolatePoint(points.leftHip, points.leftKnee, 0.24);
+  const rightShortEnd = interpolatePoint(points.rightHip, points.rightKnee, 0.24);
+  const leftWaist = interpolatePoint(points.leftShoulder, points.leftHip, 0.7);
+  const rightWaist = interpolatePoint(points.rightShoulder, points.rightHip, 0.7);
+  const hipCenter = midpoint(points.leftHip, points.rightHip);
+  const shoulderCenter = midpoint(points.leftShoulder, points.rightShoulder);
+  const head = points.head;
+  const headAngle = pose.headAngle || 0;
+
+  return `
+    <g class="wall-holds">
+      ${renderClimbingHold(points.leftHand, points.leftWrist, mapId, 5.1)}
+      ${renderClimbingHold(points.rightHand, points.rightWrist, mapId, 5.1)}
+      ${renderClimbingHold(points.leftFoot, points.leftAnkle, mapId, 5.5)}
+      ${renderClimbingHold(points.rightFoot, points.rightAnkle, mapId, 5.5)}
+    </g>
+    <g class="body-base" filter="url(#${mapId}-soft-shadow)">
+      <path class="climber-leg" stroke="url(#${mapId}-skin)" d="${jointPath(points.leftHip, points.leftKnee, points.leftAnkle)}"></path>
+      <path class="climber-leg" stroke="url(#${mapId}-skin)" d="${jointPath(points.rightHip, points.rightKnee, points.rightAnkle)}"></path>
+      <path class="climber-shorts-leg" stroke="url(#${mapId}-shorts)" d="${linePath(points.leftHip, leftShortEnd)}"></path>
+      <path class="climber-shorts-leg" stroke="url(#${mapId}-shorts)" d="${linePath(points.rightHip, rightShortEnd)}"></path>
+      ${renderClimbingShoe(points.leftAnkle, points.leftFoot, outfit.shoe, "left")}
+      ${renderClimbingShoe(points.rightAnkle, points.rightFoot, outfit.shoe, "right")}
+
+      <path class="climber-arm" stroke="url(#${mapId}-skin)" d="${jointPath(points.leftShoulder, points.leftElbow, points.leftWrist)}"></path>
+      <path class="climber-arm" stroke="url(#${mapId}-skin)" d="${jointPath(points.rightShoulder, points.rightElbow, points.rightWrist)}"></path>
+      <path class="climber-sleeve" stroke="url(#${mapId}-shirt)" d="${linePath(points.leftShoulder, leftSleeveEnd)}"></path>
+      <path class="climber-sleeve" stroke="url(#${mapId}-shirt)" d="${linePath(points.rightShoulder, rightSleeveEnd)}"></path>
+
+      <path class="climber-neck" stroke="url(#${mapId}-skin)" d="${linePath(points.neck, { x: head.x, y: head.y + 8 })}"></path>
+      <path
+        class="climber-shirt"
+        fill="url(#${mapId}-shirt)"
+        d="M ${svgPoint(points.leftShoulder)} Q ${svgPoint(points.neck)} ${svgPoint(points.rightShoulder)} C ${svgPoint(interpolatePoint(points.rightShoulder, points.rightHip, 0.45))} ${svgPoint(rightWaist)} ${svgPoint(points.rightHip)} Q ${svgPoint({ x: hipCenter.x, y: hipCenter.y + 4 })} ${svgPoint(points.leftHip)} C ${svgPoint(leftWaist)} ${svgPoint(interpolatePoint(points.leftShoulder, points.leftHip, 0.45))} ${svgPoint(points.leftShoulder)} Z"
+      ></path>
+      <path
+        class="shirt-back-shadow"
+        d="M ${svgPoint(points.leftShoulder)} Q ${svgPoint(shoulderCenter)} ${svgPoint(points.neck)} L ${svgPoint(hipCenter)} Q ${svgPoint(points.leftHip)} ${svgPoint(leftWaist)} Z"
+      ></path>
+      <path
+        class="climber-shorts"
+        fill="url(#${mapId}-shorts)"
+        d="M ${svgPoint(leftWaist)} Q ${svgPoint(hipCenter)} ${svgPoint(rightWaist)} L ${svgPoint(points.rightHip)} Q ${svgPoint({ x: hipCenter.x, y: hipCenter.y + 4 })} ${svgPoint(points.leftHip)} Z"
+      ></path>
+      <path class="harness-strap" stroke="${outfit.harness}" d="M ${svgPoint(points.leftShoulder)} L ${svgPoint(points.rightHip)} M ${svgPoint(points.rightShoulder)} L ${svgPoint(points.leftHip)}"></path>
+      <path class="harness-belt" stroke="${outfit.harness}" d="M ${svgPoint(leftWaist)} Q ${svgPoint({ x: hipCenter.x, y: hipCenter.y - 2 })} ${svgPoint(rightWaist)}"></path>
+      <ellipse class="chalk-bag" cx="${formatNumber(hipCenter.x + 5)}" cy="${formatNumber(hipCenter.y)}" rx="5.1" ry="6" fill="#526273" transform="rotate(8 ${formatNumber(hipCenter.x + 5)} ${formatNumber(hipCenter.y)})"></ellipse>
+
+      <ellipse class="climber-head" cx="${formatNumber(head.x)}" cy="${formatNumber(head.y)}" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(${headAngle} ${formatNumber(head.x)} ${formatNumber(head.y)})"></ellipse>
+      <path
+        class="climber-hair"
+        fill="url(#${mapId}-hair)"
+        d="M ${formatNumber(head.x - 10.5)} ${formatNumber(head.y - 2)} C ${formatNumber(head.x - 9)} ${formatNumber(head.y - 11)} ${formatNumber(head.x - 1)} ${formatNumber(head.y - 15)} ${formatNumber(head.x + 7)} ${formatNumber(head.y - 10)} C ${formatNumber(head.x + 13)} ${formatNumber(head.y - 5)} ${formatNumber(head.x + 10)} ${formatNumber(head.y + 5)} ${formatNumber(head.x + 5)} ${formatNumber(head.y + 9)} C ${formatNumber(head.x + 1)} ${formatNumber(head.y + 3)} ${formatNumber(head.x - 6)} ${formatNumber(head.y + 5)} ${formatNumber(head.x - 10)} ${formatNumber(head.y + 2)} Z"
+        transform="rotate(${headAngle} ${formatNumber(head.x)} ${formatNumber(head.y)})"
+      ></path>
+      <path class="hair-sweep" d="M ${formatNumber(head.x - 7)} ${formatNumber(head.y - 7)} Q ${formatNumber(head.x)} ${formatNumber(head.y - 12)} ${formatNumber(head.x + 7)} ${formatNumber(head.y - 5)} M ${formatNumber(head.x - 8)} ${formatNumber(head.y - 2)} Q ${formatNumber(head.x)} ${formatNumber(head.y - 7)} ${formatNumber(head.x + 6)} ${formatNumber(head.y)}"></path>
+
+      ${renderClimberHand(points.leftWrist, points.leftHand, mapId, "left")}
+      ${renderClimberHand(points.rightWrist, points.rightHand, mapId, "right")}
+    </g>
+  `;
+}
+
+function renderClimberHand(wrist, hand, mapId, side) {
+  const direction = unitVector(wrist, hand);
+  const normal = { x: -direction.y, y: direction.x };
+  const angle = angleBetween(wrist, hand) + 90;
+  const fingerStarts = [-2.4, 0, 2.4].map((offset) => addPoints(hand, scalePoint(normal, offset)));
+  const fingerEnds = fingerStarts.map((point, index) =>
+    addPoints(point, scalePoint(direction, index === 1 ? 4.6 : 3.8))
+  );
+
+  return `
+    <path class="climber-palm-link" stroke="url(#${mapId}-skin)" d="${linePath(wrist, hand)}"></path>
+    <ellipse class="climber-hand" data-body-part="${side}-hand" cx="${formatNumber(hand.x)}" cy="${formatNumber(hand.y)}" rx="4.2" ry="5.3" fill="url(#${mapId}-skin)" transform="rotate(${formatNumber(angle)} ${formatNumber(hand.x)} ${formatNumber(hand.y)})"></ellipse>
+    <path class="climber-fingers" stroke="url(#${mapId}-skin)" d="${fingerStarts.map((point, index) => `${linePath(point, fingerEnds[index])}`).join(" ")}"></path>
+  `;
+}
+
+function renderClimbingShoe(ankle, foot, color, side) {
+  const direction = unitVector(ankle, foot);
+  let normal = { x: -direction.y, y: direction.x };
+  if (normal.y < 0) normal = scalePoint(normal, -1);
+  const soleStart = addPoints(interpolatePoint(ankle, foot, 0.35), scalePoint(normal, 3));
+  const soleEnd = addPoints(addPoints(foot, scalePoint(direction, 2.2)), scalePoint(normal, 3));
+
+  return `
+    <path class="climber-shoe-shape" data-body-part="${side}-foot" stroke="${color}" d="${linePath(ankle, foot)}"></path>
+    <path class="climber-shoe-sole" d="${linePath(soleStart, soleEnd)}"></path>
+  `;
+}
+
+function renderClimbingHold(point, joint, mapId, radius) {
+  const angle = angleBetween(joint, point);
+  return `<ellipse cx="${formatNumber(point.x)}" cy="${formatNumber(point.y + 1.4)}" rx="${radius}" ry="2.2" fill="url(#${mapId}-hold)" transform="rotate(${formatNumber(angle)} ${formatNumber(point.x)} ${formatNumber(point.y + 1.4)})"></ellipse>`;
+}
+
 function renderBodyMap({
   markers = [],
   selectedKeys = [],
@@ -910,8 +971,6 @@ function renderBodyMap({
       yPosition: zone?.y ?? marker.yPosition
     };
   });
-  const transforms = pose.transforms || {};
-
   return `
     <svg
       class="body-map ${compact ? "compact" : ""} ${interactive ? "interactive" : ""}"
@@ -946,58 +1005,7 @@ function renderBodyMap({
           <feDropShadow dx="1.4" dy="2.8" stdDeviation="2.4" flood-color="#34281d" flood-opacity="0.23"></feDropShadow>
         </filter>
       </defs>
-      <ellipse class="wall-shadow" cx="50" cy="126" rx="35" ry="3.2"></ellipse>
-      <g class="wall-holds">
-        <g transform="${svgTransform(transforms.rightArm)}">
-          <ellipse cx="76" cy="4" rx="5" ry="2.3" fill="url(#${mapId}-hold)" transform="rotate(-8 76 4)"></ellipse>
-        </g>
-        <g transform="${svgTransform(transforms.leftArm)}">
-          <ellipse cx="8" cy="43" rx="5.6" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(-31 8 43)"></ellipse>
-        </g>
-        <g transform="${svgTransform(transforms.rightLeg)}">
-          <ellipse cx="97" cy="117" rx="5.5" ry="2.5" fill="url(#${mapId}-hold)" transform="rotate(22 97 117)"></ellipse>
-        </g>
-        <g transform="${svgTransform(transforms.leftLeg)}">
-          <ellipse cx="16" cy="126" rx="5.3" ry="2.4" fill="url(#${mapId}-hold)" transform="rotate(-6 16 126)"></ellipse>
-        </g>
-      </g>
-      <g class="body-base" filter="url(#${mapId}-soft-shadow)">
-        <g transform="${svgTransform(transforms.leftArm)}">
-          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M38 47 C30 49 27 52 22 55 C18 54 15 50 10 44"></path>
-          <ellipse class="climber-hand" cx="9" cy="43" rx="5.6" ry="4.1" fill="url(#${mapId}-skin)" transform="rotate(-32 9 43)"></ellipse>
-          <path class="climber-finger-lines" d="M6 41 L4 38 M9 39 L8 36 M12 40 L12 37"></path>
-        </g>
-        <g transform="${svgTransform(transforms.rightArm)}">
-          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M60 42 C67 35 70 29 72 24 C73 18 73 13 75 7"></path>
-          <ellipse class="climber-hand" cx="76" cy="5" rx="5.3" ry="4.2" fill="url(#${mapId}-skin)" transform="rotate(-8 76 5)"></ellipse>
-          <path class="climber-finger-lines" d="M73 3 L72 0 M77 2 L77 -1 M80 4 L82 1"></path>
-        </g>
-        <g transform="${svgTransform(transforms.leftLeg)}">
-          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M45 74 C43 84 39 91 37 98 C34 107 30 115 24 122"></path>
-          <ellipse class="climber-foot climber-shoe" cx="17" cy="125" rx="8.8" ry="3.8" fill="${outfit.shoe}" transform="rotate(-5 17 125)"></ellipse>
-          <path class="climber-shoe-sole" d="M10 126 C15 128 21 128 27 125"></path>
-        </g>
-        <g transform="${svgTransform(transforms.rightLeg)}">
-          <path class="climber-limb" stroke="url(#${mapId}-skin)" d="M59 72 C68 76 77 77 84 80 C90 86 91 98 90 111"></path>
-          <ellipse class="climber-foot climber-shoe" cx="96" cy="117" rx="8" ry="3.7" fill="${outfit.shoe}" transform="rotate(24 96 117)"></ellipse>
-          <path class="climber-shoe-sole" d="M89 116 C94 120 100 121 104 119"></path>
-        </g>
-        <g transform="${svgTransform(transforms.torso)}">
-          <path class="climber-neck" stroke="url(#${mapId}-skin)" d="M44 39 C45 42 47 43 50 44"></path>
-          <path class="climber-shirt" fill="url(#${mapId}-shirt)" d="M39 42 C47 36 61 38 65 49 C71 62 67 78 55 83 C43 88 32 77 32 61 C33 51 35 45 39 42 Z"></path>
-          <path class="shirt-back-shadow" d="M48 42 C44 52 44 67 50 81 C40 78 35 70 36 60 C37 51 40 45 48 42 Z"></path>
-          <path class="climber-shorts" fill="url(#${mapId}-shorts)" d="M35 68 C43 72 56 72 65 67 C67 74 63 82 55 86 C46 90 37 85 33 76 C32 73 33 70 35 68 Z"></path>
-          <path class="harness-strap" stroke="${outfit.harness}" d="M39 46 L57 75 M62 48 L44 77"></path>
-          <path class="harness-belt" stroke="${outfit.harness}" d="M34 67 C43 71 56 71 66 66"></path>
-          <ellipse class="chalk-bag" cx="59" cy="76" rx="5.2" ry="6.2" fill="#526273" transform="rotate(9 59 76)"></ellipse>
-          <path class="chalk-bag-rim" d="M54 72 C57 74 61 74 64 72"></path>
-        </g>
-        <g transform="${svgTransform(transforms.head)}">
-          <ellipse class="climber-head" cx="43" cy="28" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(-18 43 28)"></ellipse>
-          <path class="climber-hair" fill="url(#${mapId}-hair)" d="M32 25 C33 16 41 11 50 16 C58 21 56 31 51 36 C47 29 39 32 34 31 C32 29 31 27 32 25 Z"></path>
-          <path class="hair-sweep" d="M36 19 C41 15 47 16 53 21 M34 24 C39 20 45 20 50 25"></path>
-        </g>
-      </g>
+      ${renderAvatar(pose, outfit, mapId)}
       ${
         interactive
           ? poseZones.map((zone) => {
@@ -1724,8 +1732,54 @@ function getZoneForPose(key, pose) {
   const zone = BODY_ZONE_BY_KEY[key];
   if (!zone) return null;
 
-  const group = BODY_ZONE_GROUPS[key] || "torso";
-  const point = transformPoint(zone, pose.transforms?.[group]);
+  const points = getPosePoints(pose);
+  const shoulderCenter = midpoint(points.leftShoulder, points.rightShoulder);
+  const hipCenter = midpoint(points.leftHip, points.rightHip);
+  const leftLowerLeg = midpoint(points.leftKnee, points.leftAnkle);
+  const rightLowerLeg = midpoint(points.rightKnee, points.rightAnkle);
+  const leftCalfNormal = scalePoint(perpendicularUnit(points.leftKnee, points.leftAnkle), 2.2);
+  const rightCalfNormal = scalePoint(perpendicularUnit(points.rightKnee, points.rightAnkle), -2.2);
+  const zonePoints = {
+    head: points.head,
+    neck: points.neck,
+    chest: interpolatePoint(shoulderCenter, hipCenter, 0.3),
+    abdomen: interpolatePoint(shoulderCenter, hipCenter, 0.66),
+    hip_left: points.leftHip,
+    hip_right: points.rightHip,
+    left_shoulder: points.leftShoulder,
+    left_upper_arm: midpoint(points.leftShoulder, points.leftElbow),
+    left_elbow: points.leftElbow,
+    left_forearm: midpoint(points.leftElbow, points.leftWrist),
+    left_wrist: points.leftWrist,
+    left_hand: points.leftHand,
+    left_thumb: fingerZonePoint(points.leftWrist, points.leftHand, 2, 3),
+    left_ring: fingerZonePoint(points.leftWrist, points.leftHand, 3.4, -1.8),
+    left_middle: fingerZonePoint(points.leftWrist, points.leftHand, 4.2, 0),
+    right_shoulder: points.rightShoulder,
+    right_upper_arm: midpoint(points.rightShoulder, points.rightElbow),
+    right_elbow: points.rightElbow,
+    right_forearm: midpoint(points.rightElbow, points.rightWrist),
+    right_wrist: points.rightWrist,
+    right_hand: points.rightHand,
+    right_thumb: fingerZonePoint(points.rightWrist, points.rightHand, 2, -3),
+    right_ring: fingerZonePoint(points.rightWrist, points.rightHand, 3.4, 1.5),
+    right_middle: fingerZonePoint(points.rightWrist, points.rightHand, 4.2, 0),
+    right_pinky: fingerZonePoint(points.rightWrist, points.rightHand, 3.1, 3),
+    left_thigh: midpoint(points.leftHip, points.leftKnee),
+    left_knee: points.leftKnee,
+    left_shin: leftLowerLeg,
+    left_calf: addPoints(leftLowerLeg, leftCalfNormal),
+    left_ankle: points.leftAnkle,
+    left_foot: points.leftFoot,
+    right_thigh: midpoint(points.rightHip, points.rightKnee),
+    right_knee: points.rightKnee,
+    right_shin: rightLowerLeg,
+    right_calf: addPoints(rightLowerLeg, rightCalfNormal),
+    right_ankle: points.rightAnkle,
+    right_foot: points.rightFoot
+  };
+  const point = zonePoints[key] || zone;
+
   return {
     ...zone,
     x: point.x,
@@ -1733,37 +1787,68 @@ function getZoneForPose(key, pose) {
   };
 }
 
-function transformPoint(point, transform = {}) {
-  const { a, b, c, d, e, f } = transformMatrix(transform);
+function getPosePoints(pose) {
+  return Object.fromEntries(
+    Object.entries(pose.points || {}).map(([key, value]) => [
+      key,
+      Array.isArray(value) ? { x: value[0], y: value[1] } : value
+    ])
+  );
+}
+
+function fingerZonePoint(wrist, hand, forward, lateral) {
+  const direction = unitVector(wrist, hand);
+  const normal = { x: -direction.y, y: direction.x };
+  return addPoints(hand, addPoints(scalePoint(direction, forward), scalePoint(normal, lateral)));
+}
+
+function midpoint(start, end) {
+  return interpolatePoint(start, end, 0.5);
+}
+
+function interpolatePoint(start, end, amount) {
   return {
-    x: a * point.x + c * point.y + e,
-    y: b * point.x + d * point.y + f
+    x: start.x + (end.x - start.x) * amount,
+    y: start.y + (end.y - start.y) * amount
   };
 }
 
-function svgTransform(transform = {}) {
-  if (!transform || (!transform.dx && !transform.dy && !transform.angle)) return "";
-  const { a, b, c, d, e, f } = transformMatrix(transform);
-  return `matrix(${formatNumber(a)} ${formatNumber(b)} ${formatNumber(c)} ${formatNumber(d)} ${formatNumber(e)} ${formatNumber(f)})`;
+function addPoints(first, second) {
+  return { x: first.x + second.x, y: first.y + second.y };
 }
 
-function transformMatrix(transform = {}) {
-  const angle = ((transform.angle || 0) * Math.PI) / 180;
-  const cos = Math.cos(angle);
-  const sin = Math.sin(angle);
-  const cx = transform.cx || 0;
-  const cy = transform.cy || 0;
-  const dx = transform.dx || 0;
-  const dy = transform.dy || 0;
+function scalePoint(point, amount) {
+  return { x: point.x * amount, y: point.y * amount };
+}
 
-  return {
-    a: cos,
-    b: sin,
-    c: -sin,
-    d: cos,
-    e: cx - cos * cx + sin * cy + dx,
-    f: cy - sin * cx - cos * cy + dy
-  };
+function unitVector(start, end) {
+  const x = end.x - start.x;
+  const y = end.y - start.y;
+  const length = Math.hypot(x, y) || 1;
+  return { x: x / length, y: y / length };
+}
+
+function perpendicularUnit(start, end) {
+  const direction = unitVector(start, end);
+  return { x: -direction.y, y: direction.x };
+}
+
+function angleBetween(start, end) {
+  return (Math.atan2(end.y - start.y, end.x - start.x) * 180) / Math.PI;
+}
+
+function svgPoint(point) {
+  return `${formatNumber(point.x)} ${formatNumber(point.y)}`;
+}
+
+function linePath(start, end) {
+  return `M ${svgPoint(start)} L ${svgPoint(end)}`;
+}
+
+function jointPath(start, joint, end) {
+  const approach = interpolatePoint(start, joint, 0.78);
+  const departure = interpolatePoint(joint, end, 0.22);
+  return `M ${svgPoint(start)} L ${svgPoint(approach)} Q ${svgPoint(joint)} ${svgPoint(departure)} L ${svgPoint(end)}`;
 }
 
 function formatNumber(value) {
