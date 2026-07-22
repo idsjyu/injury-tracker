@@ -769,16 +769,14 @@ textarea:focus {
 .climber-shirt,
 .climber-shorts,
 .climber-head,
-.climber-hand,
-.chalk-bag {
+.climber-hand {
   stroke: rgba(255, 255, 255, 0.34);
   stroke-width: 0.8;
   vector-effect: non-scaling-stroke;
 }
 
 .hair-sweep,
-.climber-shoe-sole,
-.chalk-bag-rim {
+.climber-shoe-sole {
   fill: none;
   stroke: rgba(35, 30, 26, 0.26);
   stroke-width: 1;
