@@ -890,7 +890,6 @@ function renderAvatar(pose, outfit, mapId) {
         fill="url(#${mapId}-shorts)"
         d="M ${svgPoint(leftWaist)} Q ${svgPoint(hipCenter)} ${svgPoint(rightWaist)} L ${svgPoint(points.rightHip)} Q ${svgPoint({ x: hipCenter.x, y: hipCenter.y + 4 })} ${svgPoint(points.leftHip)} Z"
       ></path>
-      <path class="harness-strap" stroke="${outfit.harness}" d="M ${svgPoint(points.leftShoulder)} L ${svgPoint(points.rightHip)} M ${svgPoint(points.rightShoulder)} L ${svgPoint(points.leftHip)}"></path>
       <path class="harness-belt" stroke="${outfit.harness}" d="M ${svgPoint(leftWaist)} Q ${svgPoint({ x: hipCenter.x, y: hipCenter.y - 2 })} ${svgPoint(rightWaist)}"></path>
 
       <ellipse class="climber-head" cx="${formatNumber(head.x)}" cy="${formatNumber(head.y)}" rx="10.8" ry="12" fill="url(#${mapId}-skin)" transform="rotate(${headAngle} ${formatNumber(head.x)} ${formatNumber(head.y)})"></ellipse>
